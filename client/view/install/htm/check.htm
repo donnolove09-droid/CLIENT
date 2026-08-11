@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="<?php echo $this->var['const']['charset']; ?>">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>安装向导</title>
+<link href="<?php echo $this->var['const']['path']; ?>client/view/install/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="container">
+		<div class="logo">
+			<h1>
+				<svg width="80" height="96" viewBox="0 0 768 830" version="1.1">
+					<path d="M64.433651,605.899968 C20.067302,536.265612 0,469.698785 0,389.731348 C0,174.488668 171.922656,0 384,0 C596.077344,0 768,174.488668 768,389.731348 C768,469.698785 747.932698,536.265612 703.566349,605.899968 C614.4,753.480595 441.6,870.4 384,870.4 C326.4,870.4 153.6,753.480595 64.433651,605.899968 L64.433651,605.899968 Z" fill="#4e73df"></path>
+					<path d="M429.648991,190.816 L430.160991,190.816 L429.648991,190.816 L429.648991,190.816 Z M429.648991,156 L427.088991,156 C419.408991,157.024 411.728991,160.608 404.560991,168.8 L403.024991,170.848 L206.928991,429.92 C198.736991,441.184 197.712991,453.984 204.368991,466.784 C210.512991,478.048 222.288991,485.728 235.600991,485.728 L336.464991,486.24 L304.208991,673.632 C301.648991,689.504 310.352991,705.376 325.200991,712.032 C329.808991,714.08 334.416991,714.592 339.536991,714.592 C349.776991,714.592 358.992991,709.472 366.160991,700.256 L561.744991,419.168 C569.936991,407.904 570.960991,395.104 564.304991,382.304 C557.648991,369.504 547.408991,363.36 533.072991,363.36 L432.208991,363.36 L463.952991,199.008 C464.464991,196.448 464.976991,193.376 464.976991,190.816 C464.976991,171.872 449.104991,156 431.184991,156 L429.648991,156 L429.648991,156 Z" fill="#fff"></path>
+				</svg>
+			</h1>
+			<h2><?php echo $this->var['const']['name']; ?></h2>
+		</div>
+	</div>
+	<div class="container">
+		<ul class="progressbar">
+			<li class="active" style="width:20%">阅读协议</li>
+			<li class="active" style="width:20%">系统检测</li>
+			<li style="width:20%">创建数据</li>
+			<li style="width:20%">建立帐号</li>
+			<li style="width:20%">安装完成</li>
+		</ul>
+	</div>
+	<div class="container">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>运行环境</th>
+					<th>所需配置</th>
+					<th>最佳配置</th>
+					<th>当前配置</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>操作系统</td>
+					<td>不限制</td>
+					<td>类Unix</td>
+					<td><i class="iconfont icon-check text-success"> <?php echo PHP_OS; ?></i></td>
+				</tr>
+				<tr>
+					<td>PHP版本</td>
+					<td>5.4+</td>
+					<td>7.4+</td>
+					<td><i class="iconfont icon-check text-success"> <?php echo PHP_VERSION; ?></i></td>
+				</tr>
+				<tr>
+					<td>附件上传</td>
+					<td>允许</td>
+					<td>允许</td>
+					<td><?php echo ini_get('file_uploads') ? '<i class="iconfont icon-check text-success"> '.ini_get('upload_max_filesize').'</i>' : '<i class="iconfont icon-remove text-danger"> <i class="iconfont icon-question"></i></i>'; ?></td>
+				</tr>
+				<tr>
+					<td>磁盘空间</td>
+					<td>不限制</td>
+					<td>不限制</td>
+					<td><?php echo function_exists('disk_free_space') ? '<i class="iconfont icon-check text-success"> '.floor(disk_free_space($this->root) / 1048576).'M</i>' : '<i class="iconfont icon-remove text-danger"> <i class="iconfont icon-question"></i></i>'; ?></td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>读写权限</th>
+					<th>所需状态</th>
+					<th>当前状态</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>./upload</td>
+					<td><span class="label label-success"><i class="iconfont icon-check"> 可读写</i></span></td>
+					<td><?php echo $this->var['permit']($this->root.'upload') ? '<span class="label label-success"><i class="iconfont icon-check"> 正确</i></span>' : '<span class="label label-danger"><i class="iconfont icon-remove"> 不正确</i></span>'; ?></td>
+				</tr>
+				<tr>
+					<td>./server/library/base.php</td>
+					<td><span class="label label-success"><i class="iconfont icon-check"> 可读写</i></span></td>
+					<td><?php echo $this->var['permit']($this->root.'server/library/base.php') ? '<span class="label label-success"><i class="iconfont icon-check"> 正确</i></span>' : '<span class="label label-danger"><i class="iconfont icon-remove"> 不正确</i></span>'; ?></td>
+				</tr>
+				<tr>
+					<td>./server/library/param.php</td>
+					<td><span class="label label-success"><i class="iconfont icon-check"> 可读写</i></span></td>
+					<td><?php echo $this->var['permit']($this->root.'server/library/param.php') ? '<span class="label label-success"><i class="iconfont icon-check"> 正确</i></span>' : '<span class="label label-danger"><i class="iconfont icon-remove"> 不正确</i></span>'; ?></td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>扩展函数</th>
+					<th>当前状态</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>pdo_mysql</td>
+					<td><?php echo extension_loaded('pdo_mysql') ? '<i class="iconfont icon-check text-success"> 支持</i>' : '<i class="iconfont icon-remove text-danger"> 不支持</i>'; ?></td>
+				</tr>
+				<tr>
+					<td>mbstring</td>
+					<td><?php echo extension_loaded('mbstring') ? '<i class="iconfont icon-check text-success"> 支持</i>' : '<i class="iconfont icon-remove text-danger"> 不支持</i>'; ?></td>
+				</tr>
+			</tbody>
+		</table>
+		<p class="button">
+			<button type="button" class="button-prev" onclick="location.href='<?php echo $this->var['const']['path']; ?>index.php/install/read'">上一步</button>
+			<button type="button" class="button-next" onclick="location.href='<?php echo $this->var['const']['path']; ?>index.php/install/create'">下一步</button>
+		</p>
+	</div>
+	<div class="container">
+		<div class="copyright">Copyright &copy; <?php echo date('Y'); ?> <a href="http://<?php echo $this->var['const']['site']; ?>" target="_blank"><?php echo $this->var['const']['site']; ?></a> All Rights Reserved</div>
+	</div>
+</body>
+</html>
