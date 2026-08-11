@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="<?php echo $this->var['const']['charset']; ?>">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>游戏设置</title>
+<link href="<?php echo $this->var['const']['path']; ?>client/view/admin/css/form.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/jquery.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/layer.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/view/admin/js/param.js"></script>
+</head>
+<body>
+	<div class="clearfix">
+		<div class="panel-body">
+			<div class="builder formbuilder-box">
+				<div class="builder-tabs">
+					<div class="row">
+						<div class="col-xs-12">
+							<ul class="nav nav-tabs">
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/param">基本设置</a></li>
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/param/cache">缓存设置</a></li>
+								<li class="active"><a>游戏设置</a></li>
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/param/mail">邮件设置</a></li>
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/param/shield">防控设置</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="form-group"></div>
+				<div class="builder-container">
+					<div class="row">
+						<div class="col-xs-12">
+							<form class="form-horizontal form-builder" onsubmit="lib.write('<?php echo $this->var['const']['path']; ?>', '<?php echo $_COOKIE['account']; ?>');return false">
+								<div class="form-type-list">
+									<div class="form-group">
+										<label class="left control-label">每日赠钻：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="game_gift" oninput="lib.entry(this, 'number')" value="<?php echo $GLOBALS['param']['game']['game_gift']; ?>" placeholder="单位：颗，每日领蓝钻">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">开局扣钻：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="game_cost" oninput="lib.entry(this, 'number')" value="<?php echo $GLOBALS['param']['game']['game_cost']; ?>" placeholder="单位：颗，蓝钻场房费">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">初级底豆：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="game_small_base" oninput="lib.entry(this, 'number')" value="<?php echo $GLOBALS['param']['game']['game_small_base']; ?>" placeholder="单位：颗，初级房底分">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">中级底豆：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="game_medium_base" oninput="lib.entry(this, 'number')" value="<?php echo $GLOBALS['param']['game']['game_medium_base']; ?>" placeholder="单位：颗，中级房底分">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">高级底豆：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="game_high_base" oninput="lib.entry(this, 'number')" value="<?php echo $GLOBALS['param']['game']['game_high_base']; ?>" placeholder="单位：颗，高级房底分">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">大师底豆：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="game_big_base" oninput="lib.entry(this, 'number')" value="<?php echo $GLOBALS['param']['game']['game_big_base']; ?>" placeholder="单位：颗，大师房底分">
+										</div>
+									</div>
+									<div class="form-group"><hr /></div>
+									<div class="form-group bottom_button_list">
+										<button type="submit" class="btn btn-primary">保存</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
