@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="<?php echo $this->var['const']['charset']; ?>">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>管理中心</title>
+<link href="<?php echo $this->var['const']['path']; ?>client/view/admin/css/iconfont.css" rel="stylesheet" type="text/css">
+<link href="<?php echo $this->var['const']['path']; ?>client/view/admin/css/manage.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/jquery.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/layer.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/view/admin/js/manage.js"></script>
+</head>
+<body class="skin-black-blue">
+	<div class="wrapper">
+		<div class="main-header">
+			<div class="logo">
+				<span class="logo-mini">
+					<i class="fa fa-bolt fa-spin"></i>
+				</span>
+				<span class="logo-lg">
+					<i class="fa fa-bolt"> <?php echo $this->var['const']['name']; ?></i>
+				</span>
+			</div>
+			<div class="navbar">
+				<div class="firstnav">
+					<a href="#" onclick="lib.toggle()" class="sidebar-toggle">
+						<span class="sr-only"></span>
+					</a>
+					<div class="navbar-custom-menu">
+						<ul class="navbar-nav">
+							<li class="hidden-xs">
+								<a href="#" onclick="lib.refresh()">
+									<i class="fa fa-refresh"></i>
+								</a>
+							</li>
+							<li class="hidden-xs">
+								<a href="#" onclick="lib.screen()">
+									<i class="fa fa-arrows-alt"></i>
+								</a>
+							</li>
+							<li class="visible-xl">
+								<a href="#" onclick="lib.drop()">
+									<i class="fa fa-user-circle"></i>
+									<span><?php echo $this->var['login']['name']; ?></span>
+									<i class="fa fa-caret-down"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li class="user-header">
+										<big><?php echo $this->var['login']['name']; ?></big>
+										<small><?php echo $this->var['login']['date']; ?></small>
+									</li>
+									<li class="user-body">
+										<div class="pull-left">
+											<a href="<?php echo $this->var['const']['path']; ?>" target="_blank">
+												<i class="fa fa-external-link"> 网站首页</i>
+											</a>
+										</div>
+										<div class="pull-right">
+											<a href="#" onclick="lib.clean(0, '<?php echo $this->var['const']['path']; ?>', '<?php echo $_COOKIE['account']; ?>')">
+												<i class="fa fa-trash-o"> 清理缓存</i>
+											</a>
+										</div>
+									</li>
+									<li class="user-footer">
+										<div class="pull-left">
+											<a href="#" onclick="lib.active(0, '<?php echo $this->var['const']['path'].'index.php/admin/account/edit/'.$this->var['login']['id']; ?>')" class="btn btn-pencil">
+												<i class="fa fa-pencil-square-o"> 修改密码</i>
+											</a>
+										</div>
+										<div class="pull-right">
+											<a href="#" onclick="lib.logout(0, '<?php echo $this->var['const']['path']; ?>', '<?php echo $_COOKIE['account']; ?>')" class="btn btn-out">
+												<i class="fa fa-sign-out"> 退出登录</i>
+											</a>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="main-sidebar">
+			<ul class="sidebar-menu">
+				<li class="active">
+					<a href="#" onclick="lib.active(this, '<?php echo $this->var['const']['path']; ?>index.php/admin/home')">
+						<i class="fa fa-home"></i>
+						<span>管理主页</span>
+					</a>
+				</li>
+				<li class="treeview">
+					<a href="#" onclick="lib.bar(this)">
+						<i class="fa fa-cogs"></i>
+						<span>设置管理</span>
+						<span class="pull-right-container">
+							<i class="fa fa-angle-left"></i>
+						</span>
+					</a>
+					<ul class="treeview-menu">
+						<li>
+							<a href="#" onclick="lib.active(this, '<?php echo $this->var['const']['path']; ?>index.php/admin/param')">
+								<i class="fa fa-cog"></i>
+								<span>系统参数</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="treeview">
+					<a href="#" onclick="lib.bar(this)">
+						<i class="fa fa-users"></i>
+						<span>用户管理</span>
+						<span class="pull-right-container">
+							<i class="fa fa-angle-left"></i>
+						</span>
+					</a>
+					<ul class="treeview-menu">
+						<li>
+							<a href="#" onclick="lib.active(this, '<?php echo $this->var['const']['path']; ?>index.php/admin/member')">
+								<i class="fa fa-user"></i>
+								<span>用户列表</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" onclick="lib.active(this, '<?php echo $this->var['const']['path']; ?>index.php/admin/buy')">
+								<i class="fa fa-secret"></i>
+								<span>密钥列表</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="treeview">
+					<a href="#" onclick="lib.bar(this)">
+						<i class="fa fa-wrench"></i>
+						<span>工具管理</span>
+						<span class="pull-right-container">
+							<i class="fa fa-angle-left"></i>
+						</span>
+					</a>
+					<ul class="treeview-menu">
+						<li>
+							<a href="#" onclick="lib.active(this, '<?php echo $this->var['const']['path']; ?>index.php/admin/stat')">
+								<i class="fa fa-pie-chart"></i>
+								<span>访问统计</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" onclick="lib.active(this, '<?php echo $this->var['const']['path']; ?>index.php/admin/command')">
+								<i class="fa fa-database"></i>
+								<span>语句命令</span>
+							</a>
+						</li>
+						<li>
+							<a href="#" onclick="lib.active(this, '<?php echo $this->var['const']['path']; ?>index.php/admin/update')">
+								<i class="fa fa-cloud-download"></i>
+								<span>程序更新</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="treeview">
+					<a href="#" onclick="lib.bar(this)">
+						<i class="fa fa-user-circle"></i>
+						<span>权限管理</span>
+						<span class="pull-right-container">
+							<i class="fa fa-angle-left"></i>
+						</span>
+					</a>
+					<ul class="treeview-menu">
+						<li>
+							<a href="#" onclick="lib.active(this, '<?php echo $this->var['const']['path']; ?>index.php/admin/account')">
+								<i class="fa fa-user-plus"></i>
+								<span>系统帐号</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="content-wrapper">
+			<div class="tab-pane">
+				<iframe width="100%" height="100%" frameborder="0" src="<?php echo $this->var['const']['path']; ?>index.php/admin/home"></iframe>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
