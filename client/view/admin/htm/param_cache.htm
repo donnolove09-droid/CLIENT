@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="<?php echo $this->var['const']['charset']; ?>">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>缓存设置</title>
+<link href="<?php echo $this->var['const']['path']; ?>client/view/admin/css/form.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/jquery.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/layer.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/view/admin/js/param.js"></script>
+</head>
+<body>
+	<div class="clearfix">
+		<div class="panel-body">
+			<div class="builder formbuilder-box">
+				<div class="builder-tabs">
+					<div class="row">
+						<div class="col-xs-12">
+							<ul class="nav nav-tabs">
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/param">基本设置</a></li>
+								<li class="active"><a>缓存设置</a></li>
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/param/game">游戏设置</a></li>
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/param/mail">邮件设置</a></li>
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/param/shield">防控设置</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="form-group"></div>
+				<div class="builder-container">
+					<div class="row">
+						<div class="col-xs-12">
+							<form class="form-horizontal form-builder" onsubmit="lib.write('<?php echo $this->var['const']['path']; ?>', '<?php echo $_COOKIE['account']; ?>');return false">
+								<div class="form-type-list">
+									<div class="form-group">
+										<label class="left control-label">缓存开关：</label>
+										<div class="right">
+											<div class="radio-inline lyui-control lyui-radio">
+												<label for="power_on">
+													<input class="radio" type="radio" onclick="lib.radio(1, 'power', 1)" id="power_on" name="cache_power" value="1"<?php if($GLOBALS['param']['cache']['cache_power']){echo ' checked="checked"';} ?>>
+													<span class="lyui-control-indicator<?php if($GLOBALS['param']['cache']['cache_power']){echo ' radio-checked';} ?>"></span>
+													<span>开启</span>
+												</label>
+											</div>
+											<div class="radio-inline lyui-control lyui-radio">
+												<label for="power_off">
+													<input class="radio" type="radio" onclick="lib.radio(0, 'power', 1)" id="power_off" name="cache_power" value="0"<?php if(!$GLOBALS['param']['cache']['cache_power']){echo ' checked="checked"';} ?>>
+													<span class="lyui-control-indicator<?php if(!$GLOBALS['param']['cache']['cache_power']){echo ' radio-checked';} ?>"></span>
+													<span>关闭</span>
+												</label>
+											</div>
+											<div id="power"<?php if(!$GLOBALS['param']['cache']['cache_power']){echo ' class="hide"';} ?>>
+												<label class="control-label label-right">缓存时间：</label>
+												<input class="form-control input" type="text" name="cache_expire" oninput="lib.entry(this, 'number')" value="<?php echo $GLOBALS['param']['cache']['cache_expire']; ?>" placeholder="单位：秒">
+											</div>
+										</div>
+									</div>
+									<div class="form-group"><hr /></div>
+									<div class="form-group bottom_button_list">
+										<button type="submit" class="btn btn-primary">保存</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
