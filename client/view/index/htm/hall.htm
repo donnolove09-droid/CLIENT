@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="<?php echo $this->var['const']['charset']; ?>">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>大厅</title>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/jquery.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/layer.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/view/index/js/hall.js"></script>
+<link href="<?php echo $this->var['const']['path']; ?>client/view/index/css/hall.css" rel="stylesheet" type="text/css">
+</head>
+<body data-path="<?php echo $this->var['const']['path']; ?>" data-token="<?php echo $_COOKIE['member']; ?>">
+	<div class="hall-info">
+		<span class="hall-avatar"><img src="<?php echo $this->var['avatar']; ?>" class="hall-btn-avatar" onclick="lib.score($('body').data('path'), $('body').data('token'))"></span>
+		<span class="hall-nick"><?php echo $this->var['login']['nick']; ?></span>
+		<span class="hall-name"><?php echo $this->var['login']['name']; ?></span>
+	</div>
+	<div class="hall-gem">
+		<span class="hall-gem-icon"></span>
+		<p><?php echo $this->var['login']['gem']; ?></p>
+		<span class="hall-btn-gem-buy" onclick="lib.tab(['tab_buy', 'tab_buy'], ['充值蓝钻', '充值金豆'], [0, 1])"></span>
+	</div>
+	<div class="hall-pea">
+		<span class="hall-pea-icon"></span>
+		<p><?php echo $this->var['login']['pea']; ?></p>
+		<span class="hall-btn-pea-buy" onclick="lib.tab(['tab_buy', 'tab_buy'], ['充值蓝钻', '充值金豆'], [1, 1])"></span>
+	</div>
+	<div class="hall-btn-gift" onclick="lib.dialog('dialog_gift', '领钻')"></div>
+	<div class="hall-btn-set" onclick="lib.tab(['tab_info', 'tab_pw'], ['更新资料', '修改密码'], [0, 0])"></div>
+	<div id="hall_home">
+		<span class="hall-girl"></span>
+		<span class="hall-btn-gem-get" onclick="lib.tab(['tab_get', 'tab_put'], ['加入房间', '创建房间'], [0, 0])"></span>
+		<span class="hall-btn-gem-put" onclick="lib.tab(['tab_get', 'tab_put'], ['加入房间', '创建房间'], [1, 0])"></span>
+		<span class="hall-btn-pea-get" onclick="lib.tab(['tab_get', 'tab_put'], ['加入房间', '创建房间'], [0, 2])"></span>
+		<span class="hall-btn-pea-put" onclick="lib.tab(['tab_get', 'tab_put'], ['加入房间', '创建房间'], [1, 2])"></span>
+		<span class="hall-btn-fast" onclick="lib.swap(0)"></span>
+	</div>
+	<div id="hall_house" class="hide">
+		<span class="hall-boy"></span>
+		<span class="hall-btn-house-small" onclick="lib.fast(1, $('body').data('path'), $('body').data('token'))"><p><?php echo $GLOBALS['param']['game']['game_small_base']; ?></p></span>
+		<span class="hall-btn-house-medium" onclick="lib.fast(2, $('body').data('path'), $('body').data('token'))"><p><?php echo $GLOBALS['param']['game']['game_medium_base']; ?></p></span>
+		<span class="hall-btn-house-high" onclick="lib.fast(3, $('body').data('path'), $('body').data('token'))"><p><?php echo $GLOBALS['param']['game']['game_high_base']; ?></p></span>
+		<span class="hall-btn-house-big" onclick="lib.fast(4, $('body').data('path'), $('body').data('token'))"><p><?php echo $GLOBALS['param']['game']['game_big_base']; ?></p></span>
+		<span class="hall-btn-back" onclick="lib.swap(1)"></span>
+	</div>
+	<div class="hall-shade">
+		<span class="hall-btn-bill" onclick="lib.page('page_order', '战绩', 'bill', $('body').data('path'), $('body').data('token'))"></span>
+		<span class="hall-btn-help" onclick="lib.dialog('dialog_help', '帮助')"></span>
+	</div>
+	<div id="tab_info" class="hide">
+		<form class="container" onsubmit="lib.info($('body').data('path'), $('body').data('token'));return false">
+			<p class="tab-info">
+				<input type="file" onchange="lib.upload($('body').data('path'), $('body').data('token'))" style="display:none">
+				<img src="<?php echo $this->var['avatar']; ?>">
+				<span class="tab-progress" style="display:none"></span>
+				<span class="tab-upload" onclick="$('.layui-layer-tab .tab-info input').click()"></span>
+				<span class="tab-logout" onclick="lib.logout(0, $('body').data('path'), $('body').data('token'))"></span>
+			</p>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-item">
+						<label>邮箱帐号</label>
+						<input type="text" value="<?php echo $this->var['login']['name']; ?>" disabled="disabled" class="input readonly">
+					</div>
+					<div class="form-item">
+						<label>游戏昵称</label>
+						<input type="text" value="<?php echo $this->var['login']['nick']; ?>" name="member_nick" class="input">
+					</div>
+				</div>
+			</div>
+			<p class="button">
+				<button type="submit" class="btn-submit bg-submit">更新</button>
+			</p>
+		</form>
+	</div>
+	<div id="tab_pw" class="hide">
+		<form class="container" onsubmit="lib.pw($('body').data('path'), $('body').data('token'));return false">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-item">
+						<label>当前密码</label>
+						<input type="password" name="member_mpw" class="input">
+					</div>
+					<div class="form-item">
+						<label>重设密码</label>
+						<input type="password" name="member_pw" class="input">
+					</div>
+					<div class="form-item">
+						<label>确认密码</label>
+						<input type="password" name="member_rpw" class="input">
+					</div>
+				</div>
+			</div>
+			<p class="button">
+				<button type="submit" class="btn-submit bg-submit">修改</button>
+			</p>
+		</form>
+	</div>
+	<div id="tab_buy" class="hide">
+		<form class="container" id="buy_first" onsubmit="lib.buy(this.id, $('body').data('path'), $('body').data('token'));return false">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-item">
+						<label>积分类型</label>
+						<select name="buy_type" disabled="disabled" class="select readonly">
+							<option value="1">蓝钻</option>
+							<option value="2">金豆</option>
+						</select>
+					</div>
+					<div class="form-item">
+						<label>充值密钥</label>
+						<input type="text" name="buy_secret" class="input">
+					</div>
+				</div>
+			</div>
+			<p class="button">
+				<button type="submit" class="btn-submit bg-submit">充值</button>
+				<button type="button" class="btn-submit bg-button" onclick="lib.page('page_order', '充值记录', 'buy', $('body').data('path'), $('body').data('token'))">充值记录</button>
+			</p>
+		</form>
+	</div>
+	<div id="page_order" class="hide">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<table>
+						<thead></thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="dialog_help" class="hide">
+		<div class="container">
+			<div class="dialog-help">
+				<p>同城棋牌</p>
+			</div>
+			<div class="dialog-help">
+				<p class="dialog-small">同城棋牌为蓝钻场，蓝钻房只收取房费不结算输赢！输赢请线下私了，准入分即房费。</p>
+			</div>
+			<div class="dialog-help">
+				<p>经典玩法</p>
+			</div>
+			<div class="dialog-help dialog-bottom">
+				<p class="dialog-small">经典玩法为金豆场，金豆房不收取房费只结算输赢！适合上下分玩家，准入分即底分。</p>
+			</div>
+		</div>
+	</div>
+	<div id="dialog_score" class="hide">
+		<div class="container">
+			<p class="tab-info">
+				<img src="<?php echo $this->var['avatar']; ?>">
+				<span class="tab-logout" onclick="lib.logout(0, $('body').data('path'), $('body').data('token'))"></span>
+			</p>
+			<div class="dialog-width">
+				<div class="dialog-score">
+					<span class="dialog-icon dialog-nick"></span>
+					<p><?php echo $this->var['login']['nick']; ?></p>
+				</div>
+				<div class="dialog-score">
+					<span class="dialog-icon dialog-win"></span>
+					<p></p>
+				</div>
+				<div class="dialog-score dialog-bottom">
+					<span class="dialog-icon dialog-lose"></span>
+					<p></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="dialog_gift" class="hide">
+		<div class="container">
+			<div class="dialog-width">
+				<div class="dialog-gift">
+					<p><?php echo $GLOBALS['param']['game']['game_gift']; ?></p>
+				</div>
+			</div>
+			<p class="button">
+				<button type="button" class="btn-submit bg-submit" onclick="lib.gift($('body').data('path'), $('body').data('token'))">领取</button>
+			</p>
+		</div>
+	</div>
+	<div id="tab_get" class="hide">
+		<form class="container" onsubmit="lib.get($('body').data('path'), $('body').data('token'));return false">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-item">
+						<label>房间类型</label>
+						<select name="get_type" disabled="disabled" class="select readonly">
+							<option value="1">同城棋牌（蓝钻场）</option>
+							<option value="2">经典玩法（金豆场）</option>
+						</select>
+					</div>
+					<div class="form-item">
+						<label>房间编号</label>
+						<input type="text" name="get_rid" class="input">
+					</div>
+				</div>
+			</div>
+			<p class="button">
+				<button type="submit" class="btn-submit bg-submit">加入</button>
+			</p>
+		</form>
+	</div>
+	<div id="tab_put" class="hide">
+		<form class="container" onsubmit="lib.put($('body').data('path'), $('body').data('token'));return false">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-item">
+						<label>房间类型</label>
+						<select name="put_type" disabled="disabled" class="select readonly">
+							<option value="1">同城棋牌（蓝钻场）</option>
+							<option value="2">经典玩法（金豆场）</option>
+						</select>
+					</div>
+					<div class="form-item">
+						<label>房间模式</label>
+						<select name="put_mode" class="select">
+							<option value="0">平摊支付（<?php echo $GLOBALS['param']['game']['game_cost']; ?>）</option>
+							<option value="1">房主支付（<?php echo intval($GLOBALS['param']['game']['game_cost']) * 3; ?>）</option>
+						</select>
+					</div>
+					<div class="form-item" style="display:none">
+						<label>房间频道</label>
+						<select name="put_house" class="select">
+							<option value="1">初级房（<?php echo $GLOBALS['param']['game']['game_small_base']; ?>）</option>
+							<option value="2">中级房（<?php echo $GLOBALS['param']['game']['game_medium_base']; ?>）</option>
+							<option value="3">高级房（<?php echo $GLOBALS['param']['game']['game_high_base']; ?>）</option>
+							<option value="4">大师房（<?php echo $GLOBALS['param']['game']['game_big_base']; ?>）</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<p class="button">
+				<button type="submit" class="btn-submit bg-submit">创建</button>
+			</p>
+		</form>
+	</div>
+</body>
+</html>
