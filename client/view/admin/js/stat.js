@@ -1,0 +1,1 @@
+var lib={search:function(_path){var _keyword=$("input[name='keyword']").val().replace(/^\s+|\s+$/g,"");if(!/^(\d{1,3}\.){3}\d{1,3}$/.test(_keyword)){layer.alert("IP不符合规范！",{icon:7})}else{location.href=_path+"index.php/admin/stat/init/keyword:"+encodeURIComponent(_keyword)}}};
