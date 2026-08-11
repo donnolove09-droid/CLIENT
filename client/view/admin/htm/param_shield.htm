@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="<?php echo $this->var['const']['charset']; ?>">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>防控设置</title>
+<link href="<?php echo $this->var['const']['path']; ?>client/view/admin/css/form.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/jquery.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/layer.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/view/admin/js/param.js"></script>
+</head>
+<body>
+	<div class="clearfix">
+		<div class="panel-body">
+			<div class="builder formbuilder-box">
+				<div class="builder-tabs">
+					<div class="row">
+						<div class="col-xs-12">
+							<ul class="nav nav-tabs">
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/param">基本设置</a></li>
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/param/cache">缓存设置</a></li>
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/param/game">游戏设置</a></li>
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/param/mail">邮件设置</a></li>
+								<li class="active"><a>防控设置</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="form-group"></div>
+				<div class="builder-container">
+					<div class="row">
+						<div class="col-xs-12">
+							<form class="form-horizontal form-builder" onsubmit="lib.write('<?php echo $this->var['const']['path']; ?>', '<?php echo $_COOKIE['account']; ?>');return false">
+								<div class="form-type-list">
+									<div class="form-group">
+										<label class="left control-label">在线时效：</label>
+										<div class="right">
+											<select class="form-control select" name="shield_online">
+												<optgroup label="安全系数高">
+													<option value="1">一天</option>
+												</optgroup>
+												<optgroup label="安全系数中">
+													<option value="7"<?php if($GLOBALS['param']['shield']['shield_online'] == 7){echo ' selected="selected"';} ?>>一周</option>
+												</optgroup>
+												<optgroup label="安全系数低">
+													<option value="30"<?php if($GLOBALS['param']['shield']['shield_online'] == 30){echo ' selected="selected"';} ?>>一月</option>
+												</optgroup>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">登录数防：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="shield_login_try" oninput="lib.entry(this, 'tinyint')" value="<?php echo $GLOBALS['param']['shield']['shield_login_try']; ?>" placeholder="单位：次，时控内登录试错的次数">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">登录时控：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="shield_login_catch" oninput="lib.entry(this, 'number')" value="<?php echo $GLOBALS['param']['shield']['shield_login_catch']; ?>" placeholder="单位：分钟，时控内超出数防无法尝试登录">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">注册数防：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="shield_reg_try" oninput="lib.entry(this, 'tinyint')" value="<?php echo $GLOBALS['param']['shield']['shield_reg_try']; ?>" placeholder="单位：个，时控内注册帐号的个数">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">注册时控：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="shield_reg_catch" oninput="lib.entry(this, 'number')" value="<?php echo $GLOBALS['param']['shield']['shield_reg_catch']; ?>" placeholder="单位：分钟，时控内超出数防无法注册帐号">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">邮件数防：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="shield_mail_try" oninput="lib.entry(this, 'tinyint')" value="<?php echo $GLOBALS['param']['shield']['shield_mail_try']; ?>" placeholder="单位：封，时控内发送邮件的封数">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">邮件时控：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="shield_mail_catch" oninput="lib.entry(this, 'number')" value="<?php echo $GLOBALS['param']['shield']['shield_mail_catch']; ?>" placeholder="单位：分钟，时控内超出数防无法发送邮件">
+										</div>
+									</div>
+									<div class="form-group"><hr /></div>
+									<div class="form-group bottom_button_list">
+										<button type="submit" class="btn btn-primary">保存</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
