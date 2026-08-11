@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="<?php echo $this->var['const']['charset']; ?>">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>房间</title>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/jquery.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/layer.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/view/index/js/room.js"></script>
+<link href="<?php echo $this->var['const']['path']; ?>client/view/index/css/room.css" rel="stylesheet" type="text/css">
+</head>
+<body data-rid="<?php echo $this->var['room']['id']; ?>" data-path="<?php echo $this->var['const']['path']; ?>" data-token="<?php echo $_COOKIE['member']; ?>">
+	<div class="room-top-card">
+		<span class="room-top-card-main room-top-card-y"></span>
+		<span class="room-top-card-main room-top-card-x"></span>
+		<span class="room-top-card-main room-top-card-2"></span>
+		<span class="room-top-card-main room-top-card-a"></span>
+		<span class="room-top-card-main room-top-card-k"></span>
+		<span class="room-top-card-main room-top-card-q"></span>
+		<span class="room-top-card-main room-top-card-j"></span>
+		<span class="room-top-card-main room-top-card-t"></span>
+		<span class="room-top-card-main room-top-card-9"></span>
+		<span class="room-top-card-main room-top-card-8"></span>
+		<span class="room-top-card-main room-top-card-7"></span>
+		<span class="room-top-card-main room-top-card-6"></span>
+		<span class="room-top-card-main room-top-card-5"></span>
+		<span class="room-top-card-main room-top-card-4"></span>
+		<span class="room-top-card-main room-top-card-3"></span>
+		<span class="room-top-card-one hide"></span>
+		<span class="room-top-card-two hide"></span>
+		<span class="room-top-card-three hide"></span>
+	</div>
+	<div class="room-btn-quit"></div>
+	<div class="room-base">
+		<span class="room-base-icon"></span>
+		<p><?php echo $this->var['room']['base']; ?></p>
+	</div>
+	<div class="room-mult">
+		<span class="room-mult-icon"></span>
+		<p><?php echo $this->var['room']['mult']; ?></p>
+	</div>
+	<div class="room-btn-shift"></div>
+	<div class="room-right-info room-info hide">
+		<span class="room-owner hide"></span>
+		<span class="room-offline hide"></span>
+		<span class="room-lord hide"></span>
+		<span class="room-avatar"><img src="<?php echo $this->var['const']['path']; ?>client/view/index/css/avatar.png" class="room-btn-avatar"></span>
+		<span class="room-nick"></span>
+	</div>
+	<div class="room-right-talk hide"><p></p></div>
+	<div class="room-right-plan hide"></div>
+	<div class="room-right-seat room-big-card-main room-big-card-0 hide"></div>
+	<div class="room-right-warn room-warn hide"></div>
+	<div class="room-right-notify">
+		<span class="room-ready hide"></span>
+		<span class="room-grab hide"></span>
+		<span class="room-toss hide"></span>
+		<span class="room-past hide"></span>
+		<span class="room-clock hide"><p></p></span>
+	</div>
+	<div class="room-right-fight hide"></div>
+	<div class="room-left-info room-info hide">
+		<span class="room-owner hide"></span>
+		<span class="room-offline hide"></span>
+		<span class="room-lord hide"></span>
+		<span class="room-avatar"><img src="<?php echo $this->var['const']['path']; ?>client/view/index/css/avatar.png" class="room-btn-avatar"></span>
+		<span class="room-nick"></span>
+	</div>
+	<div class="room-left-talk hide"><p></p></div>
+	<div class="room-left-plan hide"></div>
+	<div class="room-left-seat room-big-card-main room-big-card-0 hide"></div>
+	<div class="room-left-warn room-warn hide"></div>
+	<div class="room-left-notify">
+		<span class="room-ready hide"></span>
+		<span class="room-grab hide"></span>
+		<span class="room-toss hide"></span>
+		<span class="room-past hide"></span>
+		<span class="room-clock hide"><p></p></span>
+	</div>
+	<div class="room-left-fight hide"></div>
+	<div class="room-magic">
+		<span class="room-bomb hide"></span>
+		<span class="room-win hide"></span>
+		<span class="room-lose hide"></span>
+	</div>
+	<div class="room-self-fight hide"></div>
+	<div class="room-self-notify">
+		<span class="room-ready hide"></span>
+		<span class="room-grab hide"></span>
+		<span class="room-toss hide"></span>
+		<span class="room-past hide"></span>
+		<span class="room-clock hide"><p></p></span>
+	</div>
+	<div class="room-self-notice">
+		<span class="room-poor hide"><i class="room-poor-<?php echo $this->var['point'][0]; ?>-icon"></i></span>
+		<span class="room-loop hide"></span>
+		<span class="room-rule hide"></span>
+		<span class="room-weak hide"></span>
+	</div>
+	<div class="room-self-control">
+		<span class="room-btn-ready hide"></span>
+		<span class="room-btn-toss hide"></span>
+		<span class="room-btn-grab hide"></span>
+		<span class="room-btn-past hide"></span>
+		<span class="room-btn-filter hide"></span>
+		<span class="room-btn-fight hide"></span>
+	</div>
+	<div class="room-self-plan hide"></div>
+	<div class="room-self-talk hide"><p></p></div>
+	<div class="room-self-info room-info hide">
+		<span class="room-owner hide"></span>
+		<span class="room-offline hide"></span>
+		<span class="room-lord hide"></span>
+		<span class="room-avatar"><img src="<?php echo $this->var['const']['path']; ?>client/view/index/css/avatar.png" class="room-btn-avatar"></span>
+		<span class="room-nick"></span>
+	</div>
+	<div class="room-point" data-house="<?php echo $this->var['room']['house']; ?>" data-mode="<?php echo $this->var['room']['mode']; ?>" data-cost="<?php echo $this->var['room']['cost']; ?>">
+		<span class="room-point-<?php echo $this->var['point'][0]; ?>-icon"></span>
+		<p><?php echo $this->var['point'][1]; ?></p>
+		<span class="room-btn-point-buy"></span>
+	</div>
+	<div class="room-talk-content hide">
+		<p class="room-btn-great-talk">你的牌打得太好了！</p>
+		<p class="room-btn-keep-talk">不要走，决战到天亮！</p>
+		<p class="room-btn-tacit-talk">和你合作真是太愉快了！</p>
+		<p class="room-btn-hurry-talk">快点吧，我等到花都谢了！</p>
+	</div>
+	<div class="room-btn-talk"></div>
+	<div class="room-btn-help"></div>
+	<div class="room-btn-bill"></div>
+	<div id="dialog_buy" class="hide">
+		<form class="container" onsubmit="lib.buy($('body').data('path'), $('body').data('token'));return false">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-item">
+						<label>积分类型</label>
+						<select name="buy_type" disabled="disabled" class="select readonly">
+							<option value="1">蓝钻</option>
+							<option value="2"<?php if($this->var['room']['house']){echo ' selected="selected"';} ?>>金豆</option>
+						</select>
+					</div>
+					<div class="form-item">
+						<label>充值密钥</label>
+						<input type="text" name="buy_secret" class="input">
+					</div>
+				</div>
+			</div>
+			<p class="button">
+				<button type="submit" class="btn-submit bg-submit">充值</button>
+				<button type="button" class="btn-submit bg-button" onclick="lib.page('page_order', '充值记录', 'buy', $('body').data('path'), $('body').data('token'))">充值记录</button>
+			</p>
+		</form>
+	</div>
+	<div id="page_order" class="hide">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<table>
+						<thead></thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="dialog_help" class="hide">
+		<div class="container">
+			<div class="dialog-help"></div>
+			<div class="dialog-help"></div>
+			<div class="dialog-help">
+				<p class="dialog-small">地主：上局出完牌者优先抢，其次为房主。</p>
+			</div>
+			<div class="dialog-help">
+				<p class="dialog-small">翻倍：抢地主与炸弹会在原基础上乘以二。</p>
+			</div>
+			<div class="dialog-help dialog-bottom">
+				<p class="dialog-small">结算：底乘以倍为得分，地主输赢为双倍。</p>
+			</div>
+		</div>
+	</div>
+	<div id="dialog_score" class="hide">
+		<div class="container">
+			<p class="dialog-info">
+				<img src="<?php echo $this->var['const']['path']; ?>client/view/index/css/avatar.png">
+				<span class="dialog-kick" onclick="lib.kick(0, $(this).data('kid'), $('body').data('path'), $('body').data('token'))"></span>
+			</p>
+			<div class="dialog-width">
+				<div class="dialog-score">
+					<span class="dialog-icon dialog-nick"></span>
+					<p></p>
+				</div>
+				<div class="dialog-score">
+					<span class="dialog-icon dialog-win"></span>
+					<p></p>
+				</div>
+				<div class="dialog-score">
+					<span class="dialog-icon dialog-lose"></span>
+					<p></p>
+				</div>
+				<div class="dialog-score dialog-bottom">
+					<span class="dialog-icon dialog-<?php echo $this->var['point'][0]; ?>"></span>
+					<p></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
