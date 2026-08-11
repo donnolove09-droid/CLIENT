@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="<?php echo $this->var['const']['charset']; ?>">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<meta name="keywords" content="<?php echo $GLOBALS['param']['basic']['keywords']; ?>">
+<meta name="description" content="<?php echo $GLOBALS['param']['basic']['description']; ?>">
+<title><?php echo $GLOBALS['param']['basic']['title']; ?></title>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/jquery.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/layer.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/view/index/js/index.js"></script>
+<link href="<?php echo $this->var['const']['path']; ?>client/view/index/css/index.css" rel="stylesheet" type="text/css">
+</head>
+<body data-path="<?php echo $this->var['const']['path']; ?>">
+	<span class="index-btn-logo" onclick="location.href=$('body').data('path')+'index.php/admin'"></span>
+	<span class="index-btn-reg" onclick="lib.page('page_reg', '免费注册')"></span>
+	<span class="index-btn-login" onclick="lib.page('page_login', '立即登录')"></span>
+	<div id="page_login" class="hide" data-catch="<?php echo $GLOBALS['param']['shield']['shield_login_catch']; ?>">
+		<form class="container" onsubmit="lib.sign($('body').data('path'), $('#page_login').data('catch'));return false">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-item">
+						<label class="iconfont icon-mail"></label>
+						<input type="text" name="member_name" autocomplete="off" placeholder="邮箱帐号" class="input">
+					</div>
+					<div class="form-item">
+						<label class="iconfont icon-pw"></label>
+						<input type="password" name="member_pw" placeholder="登录密码" class="input">
+					</div>
+					<div class="form-item">
+						<label class="iconfont icon-shield-flash"></label>
+						<input type="text" name="captcha" placeholder="图形验证码" class="input input-captcha">
+						<span class="captcha">
+							<i class="iconfont icon-refresh" onclick="lib.captcha()"></i>
+							<img src="<?php echo $this->var['const']['path'].'index.php/admin/login/captcha?'.time(); ?>">
+						</span>
+					</div>
+				</div>
+			</div>
+			<p class="button">
+				<button type="submit" class="btn-submit bg-login">登录</button>
+				<button type="button" class="btn-submit bg-lost-page" onclick="lib.page('page_lost', '找回密码')">找回密码</button>
+			</p>
+		</form>
+	</div>
+	<div id="page_reg" class="hide" data-catch="<?php echo $GLOBALS['param']['shield']['shield_reg_catch']; ?>">
+		<form class="container" onsubmit="lib.reg($('body').data('path'), $('#page_reg').data('catch'));return false">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-item">
+						<label class="iconfont icon-mail"></label>
+						<input type="text" name="member_name" autocomplete="off" placeholder="邮箱帐号" class="input">
+					</div>
+					<div class="form-item">
+						<label class="iconfont icon-pw"></label>
+						<input type="password" name="member_pw" placeholder="设置密码" class="input">
+					</div>
+					<div class="form-item">
+						<label class="iconfont icon-pw-rest"></label>
+						<input type="password" name="member_rpw" placeholder="确认密码" class="input">
+					</div>
+					<div class="form-item">
+						<label class="iconfont icon-shield-flash"></label>
+						<input type="text" name="captcha" placeholder="图形验证码" class="input input-captcha">
+						<span class="captcha">
+							<i class="iconfont icon-refresh" onclick="lib.captcha()"></i>
+							<img src="<?php echo $this->var['const']['path'].'index.php/admin/login/captcha?'.time(); ?>">
+						</span>
+					</div>
+				</div>
+			</div>
+			<p class="button">
+				<button type="submit" class="btn-submit bg-reg">注册</button>
+			</p>
+		</form>
+	</div>
+	<div id="page_lost" class="hide" data-catch="<?php echo $GLOBALS['param']['shield']['shield_mail_catch']; ?>">
+		<form class="container" onsubmit="lib.lost($('body').data('path'));return false">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-item">
+						<label class="iconfont icon-mail"></label>
+						<input type="text" name="member_name" autocomplete="off" placeholder="邮箱帐号" class="input">
+					</div>
+					<div class="form-item">
+						<label class="iconfont icon-mail-code"></label>
+						<input type="text" name="mail_code" placeholder="邮件凭证码" class="input input-mail">
+						<span class="mail">
+							<i class="iconfont icon-send" onclick="lib.mail_send($('body').data('path'), $('#page_lost').data('catch'))"> 发送邮件</i>
+						</span>
+					</div>
+					<div class="form-item">
+						<label class="iconfont icon-pw"></label>
+						<input type="password" name="member_pw" placeholder="重设密码" class="input">
+					</div>
+					<div class="form-item">
+						<label class="iconfont icon-pw-rest"></label>
+						<input type="password" name="member_rpw" placeholder="确认密码" class="input">
+					</div>
+					<div class="form-item">
+						<label class="iconfont icon-shield-flash"></label>
+						<input type="text" name="captcha" placeholder="图形验证码" class="input input-captcha">
+						<span class="captcha">
+							<i class="iconfont icon-refresh" onclick="lib.captcha()"></i>
+							<img src="<?php echo $this->var['const']['path'].'index.php/admin/login/captcha?'.time(); ?>">
+						</span>
+					</div>
+				</div>
+			</div>
+			<p class="button">
+				<button type="submit" class="btn-submit bg-lost">重置</button>
+			</p>
+		</form>
+	</div>
+</body>
+</html>
