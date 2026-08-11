@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="<?php echo $this->var['const']['charset']; ?>">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>新增用户</title>
+<link href="<?php echo $this->var['const']['path']; ?>client/view/admin/css/form.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/jquery.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/layer.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/view/admin/js/member.js"></script>
+</head>
+<body>
+	<div class="clearfix">
+		<div class="panel-body">
+			<div class="builder formbuilder-box">
+				<div class="builder-tabs">
+					<div class="row">
+						<div class="col-xs-12">
+							<ul class="nav nav-tabs">
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/member">用户列表</a></li>
+								<li class="active"><a>新增用户</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="form-group"></div>
+				<div class="builder-container">
+					<div class="row">
+						<div class="col-xs-12">
+							<form class="form-horizontal form-builder" onsubmit="lib.add('<?php echo $this->var['const']['path']; ?>', '<?php echo $_COOKIE['account']; ?>');return false">
+								<div class="form-type-list">
+									<div class="form-group">
+										<label class="left control-label">邮箱帐号：</label>
+										<div class="right">
+											<input class="form-control input" type="text" name="member_name" placeholder="电子邮箱格式">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">设置密码：</label>
+										<div class="right">
+											<input class="form-control input" type="password" name="member_pw" placeholder="不能包含空格或中文">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="left control-label">确认密码：</label>
+										<div class="right">
+											<input class="form-control input" type="password" name="member_rpw" placeholder="再次确认密码">
+										</div>
+									</div>
+									<div class="form-group"><hr /></div>
+									<div class="form-group bottom_button_list">
+										<button type="submit" class="btn btn-primary">新增</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
