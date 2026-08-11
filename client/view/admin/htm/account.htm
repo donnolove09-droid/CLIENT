@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="<?php echo $this->var['const']['charset']; ?>">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>系统帐号</title>
+<link href="<?php echo $this->var['const']['path']; ?>client/view/admin/css/iconfont.css" rel="stylesheet" type="text/css">
+<link href="<?php echo $this->var['const']['path']; ?>client/view/admin/css/list.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/jquery.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/pack/layer/layer.js"></script>
+<script type="text/javascript" src="<?php echo $this->var['const']['path']; ?>client/view/admin/js/account.js"></script>
+</head>
+<body>
+	<div class="clearfix">
+		<div class="panel-body">
+			<div class="builder">
+				<div class="builder-tabs">
+					<div class="row">
+						<div class="col-xs-12">
+							<ul class="nav nav-tabs">
+								<?php if(is_bool($this->var['keyword'])){ ?>
+								<li class="active"><a>系统帐号</a></li>
+								<?php }else{ ?>
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/account">系统帐号</a></li>
+								<?php } ?>
+								<li><a href="<?php echo $this->var['const']['path']; ?>index.php/admin/account/add">新增帐号</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="form-group"></div>
+				<div class="builder-toolbar">
+					<div class="row">
+						<div class="col-xs-12 col-sm-8 button-list clearfix">
+							<div class="form-group">
+								<div class="menu-drop drop-a">
+									<button type="button" class="btn btn-more"><i class="fa fa-th-list"> 批量操作 <i class="fa fa-caret-down"></i></i></button>
+									<div class="common-drop-content">
+										<a onclick="lib.del(0, 'id', '<?php echo $this->var['const']['path']; ?>', '<?php echo $_COOKIE['account']; ?>')"><i class="fa fa-trash-o"> 删除所选</i></a>
+									</div>
+								</div>
+								<div class="menu-drop drop-b">
+									<button type="button" class="btn btn-more"><i class="fa fa-line-chart"> 分页设置 <i class="fa fa-caret-down"></i></i></button>
+									<div class="common-drop-content">
+										<label for="one"><input type="checkbox" id="one" onclick="location.href='<?php echo $this->var['limit'][1]; ?>10'"<?php if($this->var['limit'][0] == 10){echo ' checked="checked"';} ?>><span></span> 每页10条</label>
+										<label for="two"><input type="checkbox" id="two" onclick="location.href='<?php echo $this->var['limit'][1]; ?>20'"<?php if($this->var['limit'][0] == 20){echo ' checked="checked"';} ?>><span></span> 每页20条</label>
+										<label for="three"><input type="checkbox" id="three" onclick="location.href='<?php echo $this->var['limit'][1]; ?>30'"<?php if($this->var['limit'][0] == 30){echo ' checked="checked"';} ?>><span></span> 每页30条</label>
+										<label for="four"><input type="checkbox" id="four" onclick="location.href='<?php echo $this->var['limit'][1]; ?>40'"<?php if($this->var['limit'][0] == 40){echo ' checked="checked"';} ?>><span></span> 每页40条</label>
+										<label for="five"><input type="checkbox" id="five" onclick="location.href='<?php echo $this->var['limit'][1]; ?>50'"<?php if($this->var['limit'][0] == 50){echo ' checked="checked"';} ?>><span></span> 每页50条</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-4 clearfix">
+							<form onsubmit="lib.search('<?php echo $this->var['const']['path']; ?>');return false">
+								<div class="form-group">
+									<div class="input-group search-form">
+										<input class="search-input form-control" type="text" name="keyword" value="<?php if(!is_bool($this->var['keyword'])){echo $this->var['keyword'];} ?>" placeholder="输入帐号搜索">
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+										</span>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="builder-container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="builder-table">
+								<div class="panel panel-default table-responsive">
+									<table class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th width="30">
+													<div class="checkbox-inline lyui-control lyui-checkbox m-l-xs">
+														<label><input type="checkbox" onclick="lib.checkbox('id', this)"><span class="lyui-control-indicator"></span></label>
+													</div>
+												</th>
+												<th width="auto">编号</th>
+												<th width="auto">帐号</th>
+												<th width="auto">登录时间</th>
+												<th width="auto">操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php if($this->var['count']){ ?>
+											<?php foreach($this->var['result'] as $object){ ?>
+											<tr>
+												<td>
+													<div class="checkbox-inline lyui-control lyui-checkbox m-l-xs">
+														<label><input type="checkbox" value="<?php echo $object->id; ?>" name="id" onclick="lib.checkbox(0, this)"><span class="lyui-control-indicator"></span></label>
+													</div>
+												</td>
+												<td><?php echo $object->id; ?></td>
+												<td><?php echo $object->name; ?></td>
+												<td><?php echo $object->date; ?><?php if(date('Ymd', strtotime($object->date)) == date('Ymd')){echo ' <i class="fa fa-just"></i>';} ?></td>
+												<td><button type="button" onclick="location.href='<?php echo $this->var['const']['path'].'index.php/admin/account/edit/'.$object->id; ?>'" class="btn-edit"><i class="fa fa-pencil-square-o"> 编辑</i></button></td>
+											</tr>
+											<?php } ?>
+											<tr><td colspan="5"><i class="fa fa-eye"> 总计 <?php echo $this->var['count']; ?> 条数据</i></td></tr>
+											<?php }else{ ?>
+											<tr><td class="empty-info" colspan="5"><i class="fa fa-eye"> 暂无数据</i></td></tr>
+											<?php } ?>
+										</tbody>
+									</table>
+								</div>
+								<?php echo $this->var['page']; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
